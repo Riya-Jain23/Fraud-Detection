@@ -5,4 +5,5 @@ plotly
 xgboost
 scikit-learn
 joblib
+imblearn
 
