@@ -1,6 +1,14 @@
 # Real-Time Fraud Detection System
 
-A Streamlit-based dashboard for real-time credit card fraud detection using machine learning.
+This is an interactive web application built with Streamlit that enables users to detect fraudulent credit card transactions using machine learning models. Designed with a user-friendly dashboard, the system provides real-time risk analysis, model performance metrics, and tools for manual transaction testing.
+
+Leveraging a hybrid model of XGBoost and Isolation Forest, the app offers high accuracy and robust fraud detection, making it ideal for educational demos, proof-of-concept projects, or showcasing ML integration in fintech.
+
+## View Demo
+
+Watch the demo video to see the app in action:
+you can find the video under the `frauddetectionsystemdemo.mp4` file in this repository.
+
 
 ## Features
 - Real-time transaction monitoring
