@@ -78,21 +78,19 @@ def load_fraud_detector():
         st.error(f"Error loading model: {e}")
         return None
 
-import gdown
-
 @st.cache_data
 def load_sample_data():
     """Download and load sample data from Google Drive"""
     try:
         file_id = "1fws1m6q_jXA7r_lhwszbPTGocrKqfaXk"
-        output_path = "creditcard.csv"
+        local_path = os.path.join("..", "data", "creditcard.csv")
 
         # Only download if file is not already present
-        if not os.path.exists(output_path):
+        if not os.path.exists(local_path):
             url = f"https://drive.google.com/uc?id={file_id}"
-            gdown.download(url, output_path, quiet=False)
+            gdown.download(url, local_path, quiet=False)
 
-        df = pd.read_csv(output_path)
+        df = pd.read_csv(local_path)
         return df.sample(n=1000, random_state=42)  # Sample for simulation
     except Exception as e:
         st.error(f"Error loading data: {e}")
