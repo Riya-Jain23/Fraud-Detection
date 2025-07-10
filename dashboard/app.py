@@ -7,6 +7,7 @@ from plotly.subplots import make_subplots
 import sys
 import os
 import time
+import gdown
 from datetime import datetime, timedelta
 import random
 import logging
@@ -77,15 +78,26 @@ def load_fraud_detector():
         st.error(f"Error loading model: {e}")
         return None
 
+import gdown
+
 @st.cache_data
 def load_sample_data():
-    """Load sample data for simulation"""
+    """Download and load sample data from Google Drive"""
     try:
-        df = pd.read_csv('../data/creditcard.csv')
-        return df.sample(n=1000, random_state=42)  # Sample for real-time simulation
+        file_id = "1fws1m6q_jXA7r_lhwszbPTGocrKqfaXk"
+        output_path = "creditcard.csv"
+
+        # Only download if file is not already present
+        if not os.path.exists(output_path):
+            url = f"https://drive.google.com/uc?id={file_id}"
+            gdown.download(url, output_path, quiet=False)
+
+        df = pd.read_csv(output_path)
+        return df.sample(n=1000, random_state=42)  # Sample for simulation
     except Exception as e:
         st.error(f"Error loading data: {e}")
         return None
+
 
 def generate_fake_transaction(base_data):
     """Generate a realistic fake transaction for simulation"""
